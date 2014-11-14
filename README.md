@@ -15,7 +15,7 @@ V projektu bom na podlagi zgornjih podatkov lahko določila državo, ki je OI pr
 
 Podatki:
 Nekatere podatke sem dobila že zbrane v tabeli na spletni strani http://en.wikipedia.org/wiki/List_of_Olympic_Games_host_cities.
-Podatke za drugo tabelo sem pridobila s spletnih strani Wikipedije, kjer obstaja članek za vsake olimpijske igre posebej (npr. http://en.wikipedia.org/wiki/2012_Summer_Olympics). Podatke sem zbrala v tabelo in jo shranila kot CSV, da jo bom lahko uvozila v R in obdelala podatke.
+Podatke za drugo tabelo sem pridobila s spletnih strani Wikipedije, kjer obstaja članek za vsake olimpijske igre posebej (npr. http://en.wikipedia.org/wiki/2012_Summer_Olympics). Podatke sem zbrala v tabelo in jo shranila kot CSV (naložena na repozitoriju), da jo bom lahko uvozila v R in obdelala podatke.
 
 
 
