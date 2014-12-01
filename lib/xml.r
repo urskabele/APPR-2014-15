@@ -9,12 +9,12 @@ stripByPath <- function(x, path) {
                     function(y) gsub("^\\s*(.*?)\\s*$", "\\1", xmlValue(y))))
 }
 
-uvozi.obcine <- function() {
-  url.obcine <- "http://en.wikipedia.org/wiki/List_of_Olympic_Games_host_cities"
-  doc.obcine <- htmlTreeParse(url.obcine, useInternalNodes=TRUE)
+uvozi.oi <- function() {
+  url.oi <- "http://en.wikipedia.org/wiki/List_of_Olympic_Games_host_cities"
+  doc.oi <- htmlTreeParse(url.oi, useInternalNodes=TRUE)
   
   # Poiščemo vse tabele v dokumentu
-  tabele <- getNodeSet(doc.obcine, "//table")
+  tabele <- getNodeSet(doc.oi, "//table")
   
   # Iz druge tabele dobimo seznam vrstic (<tr>) neposredno pod
   # trenutnim vozliščem
