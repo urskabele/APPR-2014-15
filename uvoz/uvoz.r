@@ -2,10 +2,8 @@
 
 # Funkcija, ki uvozi podatke iz datoteke CSV Tabela OI.csv
 uvozi1 <- function() {
-  return(read.csv("podatki/CSV Tabela OI.csv", sep = ";", as.is = TRUE,
-                      row.names = 1,na.strings="-",
-                      
-                      fileEncoding = "Windows-1250"))
+  return(read.csv("podatki/tabela1.csv", header=TRUE,as.is = TRUE, sep=";",
+                      na.strings="-",fileEncoding = "Windows-1250"))
 }
 
 # Zapišimo podatke v razpredelnico druzine.

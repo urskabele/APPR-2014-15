@@ -18,17 +18,22 @@ uvozi.obcine <- function() {
   
   # Iz druge tabele dobimo seznam vrstic (<tr>) neposredno pod
   # trenutnim vozliščem
-  vrstice <- getNodeSet(tabele[[2]], "./tr")
+  vrstice <- getNodeSet(tabele[[1]], "./tr")
   
   # Seznam vrstic pretvorimo v seznam (znakovnih) vektorjev
   # s porezanimi vsebinami celic (<td>) neposredno pod trenutnim vozliščem
-  seznam <- lapply(vrstice[2:length(vrstice)], stripByPath, "./td")
-  
+  seznam <- lapply(seznam, function(x)
+    if (length(x) == 9) {
+      return(x)
+    } else {
+      return(c(x, ""))
+    })
+    
   # Iz seznama vrstic naredimo matriko
   matrika <- matrix(unlist(seznam), nrow=length(seznam), byrow=TRUE)
   
   # Imena stolpcev matrike dobimo iz celic (<th>) glave (prve vrstice) prve tabele
-  colnames(matrika) <- gsub("\n", " ", stripByPath(tabele[[2]][[1]], ".//th"))
+  colnames(matrika) <- gsub("\n", " ", stripByPath(tabele[[1]][[1]], ".//th"))
   
   # Podatke iz matrike spravimo v razpredelnico
   return(data.frame(apply(gsub("\\*", "",
