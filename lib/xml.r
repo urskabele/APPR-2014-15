@@ -10,7 +10,7 @@ stripByPath <- function(x, path) {
 }
 
 uvozi.obcine <- function() {
-  url.obcine <- "http://sl.wikipedia.org/wiki/Seznam_ob%C4%8Din_v_Sloveniji"
+  url.obcine <- "http://en.wikipedia.org/wiki/List_of_Olympic_Games_host_cities"
   doc.obcine <- htmlTreeParse(url.obcine, useInternalNodes=TRUE)
   
   # Poiščemo vse tabele v dokumentu
@@ -36,3 +36,6 @@ uvozi.obcine <- function() {
                           gsub("\\.", "", matrika[,2:5]))),
                     2, as.numeric), row.names=matrika[,1]))
 }
+
+ 
+ 
