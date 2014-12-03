@@ -22,6 +22,10 @@ uvozi.obcine <- function() {
   
   # Seznam vrstic pretvorimo v seznam (znakovnih) vektorjev
   # s porezanimi vsebinami celic (<td>) neposredno pod trenutnim vozliščem
+  seznam <- lapply(vrstice[2:length(vrstice)], stripByPath, "./td")
+  
+  # Seznam vrstic pretvorimo v seznam (znakovnih) vektorjev
+  # s porezanimi vsebinami celic (<td>) neposredno pod trenutnim vozliščem
   seznam <- lapply(seznam, function(x)
     if (length(x) == 9) {
       return(x)
@@ -36,10 +40,10 @@ uvozi.obcine <- function() {
   colnames(matrika) <- gsub("\n", " ", stripByPath(tabele[[1]][[1]], ".//th"))
   
   # Podatke iz matrike spravimo v razpredelnico
-  return(data.frame(apply(gsub("\\*", "",
-                          gsub(",", ".",
-                          gsub("\\.", "", matrika[,2:5]))),
-                    2, as.numeric), row.names=matrika[,1]))
+  tabela <- data.frame(gsub("\\[.*$", "", matrika), stringsAsFactors=FALSE)
+  tabela$Year <- as.numeric(as.character(tabela$Year))
+  row.names(tabela) <- ifelse(tabela$Summer == "—", tabela$Winter, tabela$Summer)
+  return(tabela)
 }
 
  
