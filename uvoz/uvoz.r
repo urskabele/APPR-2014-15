@@ -20,12 +20,14 @@
 
 # 2. faza: Uvoz podatkov
 
+
 # Funkcija, ki uvozi podatke iz datoteke tabela1.csv
 uvozi1 <- function() {
   return(read.table("podatki/tabela1.csv", sep = ";", as.is = TRUE, header=TRUE,
                     na.strings="-",
                     
                     fileEncoding = "Windows-1250"))
+
 }
 
 # Zapišimo podatke v razpredelnico druzine.

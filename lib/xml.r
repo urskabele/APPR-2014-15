@@ -32,7 +32,11 @@ uvozi.obcine <- function() {
     } else {
       return(c(x, ""))
     })
+<<<<<<< HEAD
   
+=======
+    
+>>>>>>> fe8653e4ace9095fc701a6e75193a5427b1f062c
   # Iz seznama vrstic naredimo matriko
   matrika <- matrix(unlist(seznam), nrow=length(seznam), byrow=TRUE)
   
@@ -45,4 +49,11 @@ uvozi.obcine <- function() {
   row.names(tabela) <- ifelse(tabela$Summer == "—", tabela$Winter, tabela$Summer)
   tabela<-tabela[,-(4:5)]
   return(tabela)
+<<<<<<< HEAD
 }
+=======
+}
+
+ 
+ 
+>>>>>>> fe8653e4ace9095fc701a6e75193a5427b1f062c
