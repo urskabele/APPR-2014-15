@@ -9,12 +9,12 @@ stripByPath <- function(x, path) {
                     function(y) gsub("^\\s*(.*?)\\s*$", "\\1", xmlValue(y))))
 }
 
-uvozi.obcine <- function() {
-  url.obcine <- "http://en.wikipedia.org/wiki/List_of_Olympic_Games_host_cities"
-  doc.obcine <- htmlTreeParse(url.obcine, useInternalNodes=TRUE)
+uvozi.tabela <- function() {
+  url.tabela <- "http://en.wikipedia.org/wiki/List_of_Olympic_Games_host_cities"
+  doc.tabela <- htmlTreeParse(url.tabela, useInternalNodes=TRUE)
   
   # Poiščemo vse tabele v dokumentu
-  tabele <- getNodeSet(doc.obcine, "//table")
+  tabele <- getNodeSet(doc.tabela, "//table")
   
   # Iz druge tabele dobimo seznam vrstic (<tr>) neposredno pod
   # trenutnim vozliščem
@@ -32,11 +32,7 @@ uvozi.obcine <- function() {
     } else {
       return(c(x, ""))
     })
-<<<<<<< HEAD
-  
-=======
-    
->>>>>>> fe8653e4ace9095fc701a6e75193a5427b1f062c
+
   # Iz seznama vrstic naredimo matriko
   matrika <- matrix(unlist(seznam), nrow=length(seznam), byrow=TRUE)
   
@@ -49,11 +45,4 @@ uvozi.obcine <- function() {
   row.names(tabela) <- ifelse(tabela$Summer == "—", tabela$Winter, tabela$Summer)
   tabela<-tabela[,-(4:5)]
   return(tabela)
-<<<<<<< HEAD
 }
-=======
-}
-
- 
- 
->>>>>>> fe8653e4ace9095fc701a6e75193a5427b1f062c
