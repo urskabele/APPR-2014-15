@@ -1,7 +1,11 @@
 pdf("slike/grafi.pdf",paper="a4r")
 
-#Graf prikazuje stevilo udelezenk OI
-plot(OI[,3],xlab="Leto",ylab="Število udeleženk",main="Število držav udeleženk na OI",col="red")
 
+#Stevilo udelezenk poletnih OI
+plot(OI$Leto[Vrsta=="poletne"],OI$Stevilo.udelezenk[Vrsta=="poletne"],xlab="Leto",ylab="Število udeleženk",main="Število držav udeleženk na poletnih OI",pch=20,col="red",type="l",lwd=3.5)
+
+#Stevilo udelezenk zimskih OI
+plot(OI$Leto[Vrsta=="zimske"],OI$Stevilo.udelezenk[Vrsta=="zimske"],xlab="Leto",ylab="Število udeleženk",main="Število držav udeleženk na zimskih OI",pch=20,col="blue",type="l",lwd=3.5)
 
 dev.off()
+
