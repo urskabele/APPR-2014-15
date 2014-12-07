@@ -46,3 +46,4 @@ uvozi.tabela <- function() {
   tabela<-tabela[,-(4:5)]
   return(tabela)
 }
+
