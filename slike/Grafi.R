@@ -1,6 +1,6 @@
 pdf("slike/grafi.pdf",paper="a4r")
 
-
+attach(OI)
 #Stevilo udelezenk poletnih OI
 plot(OI$Leto[Vrsta=="poletne"],OI$Stevilo.udelezenk[Vrsta=="poletne"],xlab="Leto",ylab="Število udeleženk",main="Število držav udeleženk na poletnih OI",pch=20,col="red",type="l",lwd=3.5)
 
