@@ -1,3 +1,4 @@
+
 pdf("slike/grafi.pdf",paper="a4r")
 
 attach(OI)
