@@ -42,7 +42,7 @@ uvozi.tabela <- function() {
   # Podatke iz matrike spravimo v razpredelnico
   tabela <- data.frame(gsub("\\[.*$", "", matrika), stringsAsFactors=FALSE)
   tabela$Year <- as.numeric(as.character(tabela$Year))
-  row.names(tabela) <- ifelse(tabela$Summer == "—", tabela$Winter, tabela$Summer)
+  
   tabela<-tabela[,-(4:5)]
   return(tabela)
 }
