@@ -15,27 +15,33 @@ Analiza podatkov s programom R}
 \maketitle
 
 \section{Izbira teme}
+
 Za temo mojega projekta sem izbrala Olimpijske igre moderne dobe.
 V projektu bom za posamezne olimpijske igre (poletne in zimske) v dveh tabelah navedla različne podatke.
-Prva tabela (v HTML obliki) vsebuje podatke: mesto (imenska spremenljivka); država (imeska); kontinent (imeska); 
-zaporedna številka; vrsta (imeska); leto (številska). Tabela: http://en.wikipedia.org/wiki/List_of_Olympic_Games_host_cities.
-Druga tabela (v CSV obliki) vsebuje podatke: vrsta OI (imenska spremenljivka); število držav udeleženk (številska); 
+Prva tabela (v CSV obliki) vsebuje podatke: vrsta OI (imenska spremenljivka); število držav udeleženk (številska); 
 število športnikov (številska); razsežnost glede na število držav udeleženk (urejenostna); število športov (številska); 
 število dogodkov (številska); država z največ medaljami (številska).
+Podatke za prvo tabelo sem pridobila s spletnih strani
+ Wikipedije, kjer obstaja članek za vsake olimpijske igre posebej, npr.
+\url{http://en.wikipedia.org/wiki/2012_Summer_Olympics}. 
+ Podatke sem zbrala v tabelo in jo shranila kot CSV (naložena na repozitoriju), da jo bom lahko uvozila v R 
+ in obdelala podatke.
+
+Druga tabela (v HTML obliki) vsebuje podatke: mesto (imenska spremenljivka); država (imeska); kontinent (imeska); 
+zaporedna številka; vrsta (imeska); leto (številska). Tabela:
+\url{http://en.wikipedia.org/wiki/List_of_Olympic_Games_host_cities}.
+
 Cilji: V projektu bom na podlagi zgornjih podatkov lahko določila državo, ki je OI priredila največkrat. 
 Izračunala bom maksimalno, minimalno in povprečno število držav udeleženk, disciplin in prejetih medalj. 
 Olimpijske igre bom razvrstila v kategorije razsežnosti glede na število udeleženk. Dobljene rezultate bom prikazala tudi 
 na zemljevidu.
-Podatki: Nekatere podatke sem dobila že zbrane v tabeli na spletni strani 
-http://en.wikipedia.org/wiki/List_of_Olympic_Games_host_cities. Podatke za drugo tabelo sem pridobila s spletnih strani
- Wikipedije, kjer obstaja članek za vsake olimpijske igre posebej 
- (npr.http://en.wikipedia.org/wiki/2012_Summer_Olympics). 
- Podatke sem zbrala v tabelo in jo shranila kot CSV (naložena na repozitoriju), da jo bom lahko uvozila v R 
- in obdelala podatke.
 
+\newpage
 \section{Obdelava, uvoz in čiščenje podatkov}
 V drugi fazi sem najprej uvozila podatke, in sicer dve tabeli. Prvo tabelo (OI) sem uvozila iz CSV formata. Najprej sem v Excelu napisala tabelo in jo shranila kot CSV. Funkcija, ki to tabelo uvozi, se nahaja v mapi uvoz, v datoteki uvoz.r, imenuje pa se uvozi1. Znak - se interpretira kot NA, prva vrstica pa je glava tabele. Podatki v tabeli so števila in nizi. Tej tabeli nisem rabila odstranjevati  ali spreminjati podatkov, saj je bila že urejena.
+
 Uvozila sem tudi HTML tabelo z imenom mesta, in sicer najprej v datoteki xml.r v mapi lib. Na spletni strani je bilo več tabel, jaz sem uvozila prvo, iz nje naredila matriko in nato tabelo. Morala sem pobrisati nekatere stolpce in urediti podatke. Na koncu sem tudi to tabelo uvozila v datoteki uvoz.r v mapi uvoz.
+
 Narisala sem dva tudi grafa. V mapi slike sem ustvarila novo R-skripto. Najprej sem napisala v prvi in zadnji vrstici ukaze, ki mi uvozijo grafe v pdf obliko. Za oba grafa sem podatke vzela iz tabele OI, saj so v drugi pretežno imenske spremenljivke.
 Oba grafa sta vrste plot. Prikazujeta število držav udeleženk na Olimpijskih igrah, prvi na poletnih in drugi na zimskih OI. Da sem ju narisala, sem iz stolpca Stevilo.udelezenk ločeno pobrala tiste podatke za zimske in poletne OI (to sem dobila iz stolpca Vrsta). Grafa sem ločila, ker se mi primerjanje števila udeleženk na zimskih in poletnih OI ni zdelo smiselno.
  
