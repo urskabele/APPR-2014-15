@@ -4,18 +4,18 @@
 source("lib/uvozi.zemljevid.r")
 
 # Uvozimo zemljevid.
-cat("Uvažam zemljevid...\n")
-obcine <- uvozi.zemljevid("http://e-prostor.gov.si/fileadmin/BREZPLACNI_POD/RPE/OB.zip",
-                          "obcine", "OB/OB.shp", mapa = "zemljevid",
+cat("Uvažam zemljevid sveta...\n")
+svet <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip",
+                          "svet", "ne_110m_admin_0_countries.shp", mapa = "zemljevid",
                           encoding = "Windows-1250")
 
 # Funkcija, ki podatke preuredi glede na vrstni red v zemljevidu
 preuredi <- function(podatki, zemljevid) {
-  nove.obcine <- c()
-  manjkajo <- ! nove.obcine %in% rownames(podatki)
+  nove.drzave <- c()
+  manjkajo <- ! nove.drzave %in% rownames(podatki)
   M <- as.data.frame(matrix(nrow=sum(manjkajo), ncol=length(podatki)))
   names(M) <- names(podatki)
-  row.names(M) <- nove.obcine[manjkajo]
+  row.names(M) <- nove.drzave[manjkajo]
   podatki <- rbind(podatki, M)
   
   out <- data.frame(podatki[order(rownames(podatki)), ])[rank(levels(zemljevid$OB_UIME)[rank(zemljevid$OB_UIME)]), ]
