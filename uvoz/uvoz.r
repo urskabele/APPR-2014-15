@@ -45,7 +45,7 @@ mesta<-uvozi.tabela()
 # Funkcija, ki uvozi podatke iz datoteke Sportniki2012.csv
 uvozi2 <- function() {
   return(read.table("podatki/Sportniki2012.csv", sep = ";", as.is = TRUE, header=TRUE,
-                    na.strings="-",
+                    na.strings="-", row.names=1,
                     
                     fileEncoding = "Windows-1250"))
   
@@ -54,7 +54,7 @@ uvozi2 <- function() {
 # Zapišimo podatke v razpredelnico druzine.
 cat("Uvažam podatke o sportnikih na OI 2012...\n")
 sportniki <- uvozi2()
-
+sportniki<-sportniki[-c(2:12)]
 
 
 # Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
