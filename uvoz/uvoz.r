@@ -55,7 +55,14 @@ uvozi2 <- function() {
 cat("Uvažam podatke o sportnikih na OI 2012...\n")
 sportniki <- uvozi2()
 sportniki<-sportniki[-c(2:12)]
-
+rownames(sportniki)[72]<-"United Kingdom"
+rownames(sportniki)[45]<-"Republic of Congo"
+rownames(sportniki)[56]<-"Democratic Republic of the Congo"
+rownames(sportniki)[92]<-"Côte d'Ivoire"
+rownames(sportniki)[101]<-"Lao PDR"
+rownames(sportniki)[136]<-"Dem. Rep. Korea"
+rownames(sportniki)[152]<-"Russian Federation"
+rownames(sportniki)[170]<-"Republic of Korea"
 
 # Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
 # potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo
