@@ -12,6 +12,7 @@ svet <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthd
 # #Logični vektor držav iz zemljevida svet, ki so v tabeli sportniki
 vekt0<-rownames(sportniki) %in% svet$name_long
 
+#uredimo
 m <- match(svet$name_long, rownames(sportniki))
 sportniki.svet <- sportniki[m,]
 
@@ -36,13 +37,16 @@ preuredi <- function(podatki, zemljevid) {
 # Preuredimo podatke, da jih bomo lahko izrisali na zemljevid.
 #druzine <- preuredi(druzine, obcine)
 
+
+
 # Izračunamo povprečno velikost družine.
-druzine$povprecje <- apply(druzine[1:4], 1, function(x) sum(x*(1:4))/sum(x))
-min.povprecje <- min(druzine$povprecje, na.rm=TRUE)
-max.povprecje <- max(druzine$povprecje, na.rm=TRUE)
+#druzine$povprecje <- apply(druzine[1:4], 1, function(x) sum(x*(1:4))/sum(x))
+min.sportniki <- min(sportniki.svet, na.rm=TRUE)
+max.sportniki <- max(sportniki.svet, na.rm=TRUE)
+povp.sportniki<-sum(sportniki.svet,na.rm=TRUE)/length(sportniki.svet)
 
 # Narišimo zemljevid v PDF.
-cat("Rišem zemljevid...\n")
+cat("Rišem zemljevid za OI...\n")
 pdf("slike/povprecna_druzina.pdf", width=6, height=4)
 
 n = 100
