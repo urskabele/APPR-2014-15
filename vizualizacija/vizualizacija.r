@@ -47,10 +47,10 @@ povp.sportniki<-sum(sportniki.svet,na.rm=TRUE)/length(sportniki.svet)
 
 # Narišimo zemljevid v PDF.
 cat("Rišem zemljevid za OI...\n")
-pdf("slike/povprecna_druzina.pdf", width=6, height=4)
+pdf("slike/zemljevid.pdf", width=6, height=4)
 
 n = 100
-barve = topo.colors(n)[1+(n-1)*(druzine$povprecje-min.povprecje)/(max.povprecje-min.povprecje)]
-plot(obcine, col = barve)
+barve = topo.colors(n)[1+(n-1)*(povp.sportniki-min.sportniki)/(max.sportniki-min.sportniki)]
+plot(svet, col = barve)
 
 dev.off()
