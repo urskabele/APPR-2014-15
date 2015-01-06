@@ -21,7 +21,8 @@
 # 2. faza: Uvoz podatkov
 
 
-# Funkcija, ki uvozi podatke iz datoteke tabela1.csv
+# UVOZ PRVE CSV TABELE
+#Funkcija, ki uvozi podatke iz datoteke tabela1.csv
 uvozi1 <- function() {
   return(read.table("podatki/tabela1.csv", sep = ";", as.is = TRUE, header=TRUE,
                     na.strings="-",
@@ -38,6 +39,22 @@ OI <- uvozi1()
 source("lib/xml.r")
 cat("Uvažam podatke o mestih (tabela)...\n")
 mesta<-uvozi.tabela()
+
+
+#UVOZ DRUGE CSV TABELE
+# Funkcija, ki uvozi podatke iz datoteke Sportniki2012.csv
+uvozi2 <- function() {
+  return(read.table("podatki/Sportniki2012.csv", sep = ";", as.is = TRUE, header=TRUE,
+                    na.strings="-", row.names=1,
+                    
+                    fileEncoding = "Windows-1250"))
+  
+}
+
+# Zapišimo podatke v razpredelnico druzine.
+cat("Uvažam podatke o sportnikih na OI 2012...\n")
+sportniki <- uvozi2()
+sportniki<-sportniki[-c(2:12)]
 
 
 # Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
