@@ -44,13 +44,24 @@ preuredi <- function(podatki, zemljevid) {
 min.sportniki <- min(sportniki.svet, na.rm=TRUE)
 max.sportniki <- max(sportniki.svet, na.rm=TRUE)
 povp.sportniki<-sum(sportniki.svet,na.rm=TRUE)/length(sportniki.svet)
+norm.sportniki <- (sportniki.svet-min.sportniki)/(max.sportniki-min.sportniki)
 
 # Narišimo zemljevid v PDF.
 cat("Rišem zemljevid za OI...\n")
-pdf("slike/zemljevid.pdf", width=6, height=4)
+pdf("slike/zemljevid.pdf")
 
 n = 100
-barve = topo.colors(n)[1+(n-1)*(povp.sportniki-min.sportniki)/(max.sportniki-min.sportniki)]
+barve=rgb(1, 0, 0, (1:n)/n)[unlist(1+(n-1)*norm.sportniki)]
+#barve = topo.colors(n)[1+(n-1)*(povp.sportniki-min.sportniki)/(max.sportniki-min.sportniki)]
 plot(svet, col = barve)
+title("Število športnikov iz posameznih držav na OI 2012")
+legend("left", legend = round(seq(min.sportniki, max.sportniki, (max.sportniki-min.sportniki)/5)),
+       fill = rgb(1, 0, 0, (1:6)/6), bg = "white")
+#Oznacimo nekatera mesta
+oznake<-data.frame(E = c(76,-74), N = c(60,40))
+points(coordinates(oznake),pch=20)
+
+#Imena drzav
+#text(oznake)
 
 dev.off()
