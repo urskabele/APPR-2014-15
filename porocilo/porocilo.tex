@@ -17,7 +17,7 @@ Analiza podatkov s programom R}
 \section{Izbira teme}
 
 Za temo mojega projekta sem izbrala Olimpijske igre moderne dobe.
-V projektu bom za posamezne olimpijske igre (poletne in zimske) v dveh tabelah navedla različne podatke. \newline
+V projektu bom za posamezne olimpijske igre (poletne in zimske) v treh tabelah navedla različne podatke. \newline
 Prva tabela (v CSV obliki) vsebuje podatke:
 \begin{enumerate}
 \item{\verb|Leto| (številska premenljivka),}
@@ -35,7 +35,10 @@ Podatke za prvo tabelo sem pridobila s spletnih strani
  Podatke sem zbrala v tabelo in jo shranila kot CSV (naložena na repozitoriju), da jo bom lahko uvozila v R 
  in obdelala podatke.
 \newline
-Druga tabela (v HTML obliki) vsebuje podatke: 
+Druga tabela, prav tako v CSV obliki, vsebuje podatke o številu športnikov iz posameznih držav, ki so se udeležili 
+olimpijskih iger leta 2012 v Londonu. Podatke sem dobila na spletni strani \url{http://en.wikipedia.org/wiki/2012_Summer_Olympics} in jih shranila v tabelo v CSV obliki, ki jo bom kasneje uvozila v R.
+\newline
+Tretja tabela (v HTML obliki) vsebuje podatke: 
 \begin{enumerate}
 \item{\verb|Mesto| (imenska spremenljivka),}
 \item{\verb|Država| (imeska),}
@@ -49,26 +52,41 @@ Druga tabela (v HTML obliki) vsebuje podatke:
  Tabela:
 \url{http://en.wikipedia.org/wiki/List_of_Olympic_Games_host_cities}.
 \newline
-\textbf{Cilji:} V projektu bom na podlagi zgornjih podatkov lahko določila državo, ki je OI priredila največkrat. 
-Izračunala bom maksimalno, minimalno in povprečno število držav udeleženk, disciplin in prejetih medalj. 
+\textbf{Cilji:} V projektu bom na podlagi zgornjih podatkov lahko opazovala trend udeleževanja OI. 
+Izračunala bom maksimalno, minimalno in povprečno število športnikov, ki so jih države poslale na OI, disciplin in prejetih medalj. 
 Olimpijske igre bom razvrstila v kategorije razsežnosti glede na število udeleženk. Dobljene rezultate bom prikazala tudi 
 na zemljevidu.
 
 \newpage
 \section{Obdelava, uvoz in čiščenje podatkov}
-V drugi fazi sem najprej uvozila podatke, in sicer dve tabeli. Prvo tabelo z imenom \verb|OI| sem uvozila iz CSV formata. Najprej sem v Excelu napisala tabelo in jo shranila kot CSV. Funkcija, ki to tabelo uvozi, se nahaja v mapi \verb|uvoz|, v datoteki \verb|uvoz.r|, imenuje pa se \verb|uvozi1|. Znak \verb|-| se interpretira kot \verb|NA|, prva vrstica pa je glava tabele. Podatki v tabeli so števila in nizi. Tej tabeli nisem rabila odstranjevati  ali spreminjati podatkov, saj je bila že urejena.
+V drugi fazi sem najprej uvozila podatke, in sicer tri tabele. Prvo tabelo z imenom \verb|OI| sem uvozila iz CSV formata. Najprej sem v Excelu napisala tabelo in jo shranila kot CSV. Funkcija, ki to tabelo uvozi, se nahaja v mapi \verb|uvoz|, v datoteki \verb|uvoz.r|, imenuje pa se \verb|uvozi1|. Znak \verb|-| se interpretira kot \verb|NA|, prva vrstica pa je glava tabele. Podatki v tabeli so števila in nizi. Tej tabeli nisem rabila odstranjevati  ali spreminjati podatkov, saj je bila že urejena.
+\newline
+Na enak način sem uvozila tudi tabelo z imenom \verb|sportniki|.
 \newline
 Uvozila sem tudi HTML tabelo z imenom \verb|mesta|, in sicer najprej v datoteki \verb|xml.r| v mapi \verb|lib|. Na spletni strani je bilo več tabel, jaz sem uvozila prvo, iz nje naredila matriko in nato tabelo. Morala sem pobrisati nekatere stolpce in urediti podatke. Na koncu sem tudi to tabelo uvozila v datoteki \verb|uvoz.r| v mapi \verb|uvoz|.
 \newline
 Narisala sem dva tudi grafa. V mapi \verb|slike| sem ustvarila novo R-skripto. Najprej sem napisala v prvi in zadnji vrstici ukaze, ki mi uvozijo grafe v pdf obliko. Za oba grafa sem podatke vzela iz tabele \verb|OI|, saj so v drugi pretežno imenske spremenljivke.
 Oba grafa sta vrste \verb|plot|. Prikazujeta število držav udeleženk na Olimpijskih igrah, prvi na poletnih in drugi na zimskih OI. Da sem ju narisala, sem iz stolpca \verb|Stevilo.udelezenk| ločeno pobrala podatke za zimske in poletne OI (to sem dobila iz stolpca \verb|Vrsta|). Grafa sem ločila, ker se mi primerjanje števila udeleženk na zimskih in poletnih OI ni zdelo smiselno.
+\newline
+Grafa sta prikazana spodaj, opazimo lahko trend naraščanja števila držav udeleženk tako na poletnih, kot tudi na zimskih olimpijskih igrah.
  
 
 \includepdf[pages={1-2}]{../slike/grafi.pdf}
 
-% \section{Analiza in vizualizacija podatkov}
-% 
-% % \includegraphics{../slike/povprecna_druzina.pdf}
+\section{Analiza in vizualizacija podatkov}
+V tretji fazi sem na podlagi mojih podatkov narisala zemljevid. Odločila sem se za prikaz števila športnikov iz posameznih držav, ki so se udeležili OI 2012 v Londonu.
+\newline
+Program sem napisala v skripto \verb|vizualizacija.r| v mapi \verb|vizualizacija| in ga vključila v \verb|projekt.r|, da se pokliče z ukazom \verb|Source|.
+\newline
+Najprej sem s spletne strani \url{http://www.naturalearthdata.com/features/} v R uvozila zemljevid sveta z mejami držav. To sem naredila s pomočjo že napisane funkcije \verb|uvozi.zemljevid|, poimenovala sem ga \verb|svet|. Nato sem morala uskladiti 
+podatke iz tabele \verb|sportniki| z zemljevidom, iz tabele \verb|sportniki| sem torej pobrala ven tiste države, ki so tudi na zemljevidu. Za nekatere države na zemljevidu podatkov v moji tabeli nisem imela. Naletela sem še na eno težavo, in sicer imena nekaterih držav se v moji tabeli s podatki in v zemljevidu niso ujemala (npr. Great Britain in United Kingdom). To sem rešila tako, da sem pri uvozu tabele \verb|sportniki| v skripti \verb|uvoz.r| preimenovala te države.
+\newline
+Nato sem s pomočjo izračunanega minimuma in maksimuma mojih podatkov ustrezno pobarvala zemljevid v odtenkih rdeče barve - temnejši odtenki predstavljajo države, ki so na OI poslale več športnikov, svetlejši pa tiste z manj športniki.
+Dodala sem še naslov in legendo ter na zemljevidu s pomočjo funkcije \verb|coordinates| poimenovala večje države, označila nekaj večjih mest in jih poimenovala.
+\newline
+Zemljevid sem vključila v poročilo na naslednji strani.
+
+\includegraphics{../slike/zemljevid.pdf}
 % 
 % \section{Napredna analiza podatkov}
 % 
