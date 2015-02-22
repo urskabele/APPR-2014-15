@@ -22,12 +22,12 @@ Prva tabela (v CSV obliki) vsebuje podatke:
 \begin{enumerate}
 \item{\verb|Leto| (številska premenljivka),}
 \item{\verb|Vrsta| - poletne ali zimske (imenska spremenljivka),}
-\item{ \verb|Število udeleženk| (številska),}
-\item{\verb|Število športnikov| (številska),}
+\item{ \verb|Število udeleženk| (številska) - število držav, ki so sodelovale na OI,}
+\item{\verb|Število športnikov| (številska) - skupno število športnikov,}
 \item{\verb|Razsežnost| glede na število držav udeleženk (urejenostna),}
 \item{\verb|Število športov| (številska),}
-\item{\verb|Število dogodkov| (številska),}
-\item{\verb|Država z največ medaljami| (številska).}
+\item{\verb|Število dogodkov| (številska) - športi se delijo na discipline, vsaka disciplina pa je predstavljena na več dogodkih, npr. tenis moških posameznikov, ženskih posameznic, moških dvojic,...,}
+\item{\verb|Država z največ medaljami| (imenska).}
 \end{enumerate}
 Podatke za prvo tabelo sem pridobila s spletnih strani
  Wikipedije, kjer obstaja članek za vsake olimpijske igre posebej, npr.
@@ -55,7 +55,7 @@ Tretja tabela (v HTML obliki) vsebuje podatke:
 \textbf{Cilji:} V projektu bom na podlagi zgornjih podatkov lahko opazovala trend udeleževanja OI. 
 Izračunala bom maksimalno, minimalno in povprečno število športnikov, ki so jih države poslale na OI, disciplin in prejetih medalj. 
 Olimpijske igre bom razvrstila v kategorije razsežnosti glede na število udeleženk. Dobljene rezultate bom prikazala tudi 
-na zemljevidu.
+na zemljevidu. Poskusila bom napovedati podatke za prihodnost.
 
 \newpage
 \section{Obdelava, uvoz in čiščenje podatkov}
@@ -68,7 +68,8 @@ Uvozila sem tudi HTML tabelo z imenom \verb|mesta|, in sicer najprej v datoteki 
 Narisala sem dva tudi grafa. V mapi \verb|slike| sem ustvarila novo R-skripto. Najprej sem napisala v prvi in zadnji vrstici ukaze, ki mi uvozijo grafe v pdf obliko. Za oba grafa sem podatke vzela iz tabele \verb|OI|, saj so v drugi pretežno imenske spremenljivke.
 Oba grafa sta vrste \verb|plot|. Prikazujeta število držav udeleženk na Olimpijskih igrah, prvi na poletnih in drugi na zimskih OI. Da sem ju narisala, sem iz stolpca \verb|Stevilo.udelezenk| ločeno pobrala podatke za zimske in poletne OI (to sem dobila iz stolpca \verb|Vrsta|). Grafa sem ločila, ker se mi primerjanje števila udeleženk na zimskih in poletnih OI ni zdelo smiselno.
 \newline
-Grafa sta prikazana spodaj, opazimo lahko trend naraščanja števila držav udeleženk tako na poletnih, kot tudi na zimskih olimpijskih igrah.
+Grafa sta prikazana spodaj, opazimo lahko trend naraščanja števila držav udeleženk tako na poletnih, kot tudi na zimskih olimpijskih igrah. V času hladne vojne je zaradi bojkotov število držav padlo v letih 1980 in 1984. Število držav je najhitreje naraščalo v drugi polovici 20. stoletja, najverjetneje predvsem zaradi nastajanja novih držav in razvoja tehnologije, ki je omogočila potovanja na OI tudi iz bolj oddaljenih držav. Od leta 2000 lahko opazimo, da število držav udeleženk narašča veliko počasneje. \newline
+Število držav narašča tudi na zimskih OI, bolj sunkovita rast se je začela v 80. letih prejšnjega stoletja in se še ni umirila.
  
 
 \includepdf[pages={1-2}]{../slike/grafi.pdf}
@@ -84,16 +85,17 @@ podatke iz tabele \verb|sportniki| z zemljevidom, iz tabele \verb|sportniki| sem
 Nato sem s pomočjo izračunanega minimuma in maksimuma mojih podatkov ustrezno pobarvala zemljevid v odtenkih rdeče barve - temnejši odtenki predstavljajo države, ki so na OI poslale več športnikov, svetlejši pa tiste z manj športniki.
 Dodala sem še naslov in legendo ter na zemljevidu s pomočjo funkcije \verb|coordinates| poimenovala večje države, označila nekaj večjih mest in jih poimenovala.
 \newline
-Zemljevid sem vključila v poročilo na naslednji strani.
+Zemljevid sem vključila v poročilo na naslednji strani. Po pričakovanjih so na OI največ športnikov poslale države z največ prebivalci (ZDA, Kitajska, Rusija). Veliko vlogo pa ima gospodarska razvitost: Indija, država z milijardo prebivalcev, ima dokaj nizko številko, prav tako večina afriških držav, medtem ko so številke evropskih držav precej visoke. Torej manj razvite države tudi manj sodelujejo na OI.
 
 %\includegraphics[width=\textwidth]{../slike/zemljevid.pdf}
 \makebox[\textwidth][c]{
 \includegraphics[width=1.5\textwidth]{../slike/zemljevid.pdf}
 }
 
-% 
-% \section{Napredna analiza podatkov}
-% 
+\newpage
+\section{Napredna analiza podatkov}
+
 % % \includegraphics{../slike/naselja.pdf}
+\section{Zaključek}
 
 \end{document}

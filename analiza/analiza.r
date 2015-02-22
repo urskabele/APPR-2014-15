@@ -63,7 +63,7 @@ dev.off()
 
 
 #2.) Krivulje, ki se najbolj prilegajo številu dogodkov na poletnih in zimskih OI
-#attach(OI)
+attach(OI)
 pdf("slike/naprednigrafi.pdf",paper="a4r")
 
 
@@ -115,6 +115,6 @@ legend("topleft", c("Linerana metoda", "Kvadratna metoda","Loess"),lty=c(1,1,1),
    #Ocenimo prileganje krivulj tako, da izračunamo vsote kvadratov razdalj od napovedanih do dejanskih vrednosti
 ostz<-sapply(list(linz, kvz, loez), function(x) sum(x$residuals^2))
 
-#detach(OI)
+detach(OI)
 dev.off()
 
