@@ -94,8 +94,46 @@ Zemljevid sem vključila v poročilo na naslednji strani. Po pričakovanjih so n
 
 \newpage
 \section{Napredna analiza podatkov}
+V četrti fazi projekta sem se ukvarjala z napredno analizo podatkov. V prvem delu sem zemljevid iz tretje faze naredila bolj reprezentativen tako, da sem upoštevala število prebivalcev v vsaki državi. V drugem delu pa sem opazovala trend števila dogodkov na OI in na podlagi različnih modelov poskusila napovedati, kaj se bo z njim dogajalo v prihodnjih letih.
+\newline
+\begin{enumerate}
+\item{\textbf{ZEMLJEVID}
+\newline
+V četrti fazi sem poskusila izboljšati zemljevid iz tretje faze. Na tem zemljevidu sem prikazala število športnikov na milijon prebivalcev posamezne države. Podatke o populaciji sem dobila iz že uvoženega zemljevida \verb|svet| in jih shranila v vektor \verb|pop|. Število športnikov sem pomnožila z milijon. S funkcijo \verb|match| sem uredila podatke, končni uporabljeni podatki so v vektorju \verb|podatki.za.norm.zemlj| in nato izračunala max, min, povprečje ter pobarvala zemljevid. Ta je shranjen v mapi \verb|slike| pod imenom \verb|normiranzemljevid.pdf|. Dodala sem legendo in imena večjih držav. Zemljevid sem vključila v poročilo spodaj.
+\newline
+Vidimo lahko, da se ta zemljevid precej razlikuje od prejšnjega. Temnejši odtenki predstavljajo države z večjim, svetlejši pa z manjšim številom športnikov na milijon prebivalcev. Največ (kar 88) šprtnikov na milijon prebivalcev je na OI sodelovalo iz Islandije, število je visoko tudi v Novi Zelandij. Slovenija je dosegla 32 športnikov na milijon prebivalcev. Visoko sta tudi Kanada in Avstralija in nekatere evropske države. Zaradi velikega števila prebivalcev so Kitajska, Rusija in ZDA svetleje obarvane, prav tako večina afriških držav.
+}
+\makebox[\textwidth][c]{
+\includegraphics[width=1.5\textwidth]{../slike/normiranzemljevid.pdf}
+}
+\newpage
+\item{\textbf{MODELI IN NAPOVED}
+\newline
+V drugem delu sem opazovala, kako hitro se spreminja število dogodkov na OI, saj je to zagotovo povezano s spreminjanjem števila udeleženih držav. Pričakujem, da bo naraščanje števila dogodkov podobno naraščanju števila držav udeleženk.
+\newline
+Najprej sem iz tabele \verb|OI| pobrala leta poletnih OI in jih shranila v \verb|letop|, število dogodkov pa v \verb|dogp|. Podobno za zimske OI, \verb|letoz| in \verb|dogz|. Nato sem za te podatke narisala grafa, kjer sem dejansko število dogodkov označila s pikicami. Potem sem za vsak graf narisala tri krivulje, ki se prilegajo podatkom. Linearna modela \verb|linp| in \verb|linz| sem na grafih označila z zeleno, kvadratna modela \verb|kvp| in \verb|kvz| pa z vijolično. Z oranžno sem narisala še modela \verb|loep| in \verb|loez|, za katera sem uporabila funkcijo \verb|loess| z lokalnim prileganjem. Osi, ki predstavljata leto OI, sem podaljšala do leta 2050, do tam torej segajo moje napovedi. Izračunala sem tudi ostanka \verb|ostp| in \verb|ostz|, ki sta povedala, da se podatkom najbolj prilegata modela \verb|loess|, najmanj pa linearna modela.
+\newline
+Iz dobljenih napovedi lahko vidimo, da naj bi se število dogodkov na OI še naprej povečevalo. Opazila sem tudi zelo podobno obliko grafov števila dogodkov in števila udeleženk iz 2. faze. Zato  lahko v prihodnosti pričakujemo tudi povečevanje števila udeleženk in seveda športnikov.
+}
+\includepdf[pages={1-2}]{../slike/naprednigrafi.pdf}
+\end{enumerate}
 
 % % \includegraphics{../slike/naselja.pdf}
 \section{Zaključek}
+Ob koncu projekta lahko pridemo do zaključka, da Olimpijske igre postajajo vedno večji dogodek, saj se z leti povečuje število športov, disciplin in dogodkov, s tem pa tudi število sodelujočih držav in športnikov. K temu veliko pripomore predvsem boljša tehnologija, ki omogoča mobilnost in izboljšuje pogoje za treniranje in pripravljanje na OI. Tudi v prihodnosti lahko pričakujemo naraščanje števil in spremembo na zemljevidu, ki prikazuje število šprtnikov na populacijo. Olimpijske igre bodo torej tudi v prihodnosti dogodek, ki povezuje svet.
+
+\newpage
+\begin{thebibliography}{9}
+\bibitem{1}
+  \url{http://www.naturalearthdata.com/features/}\\
+  {Accessed: 23-02-2015}
+\bibitem{2}
+  \url{http://en.wikipedia.org/wiki/List_of_Olympic_Games_host_cities}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/2012_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+
+\end{thebibliography}
 
 \end{document}
