@@ -18,9 +18,9 @@ Analiza podatkov s programom R}
 
 Za temo mojega projekta sem izbrala Olimpijske igre moderne dobe.
 V projektu bom za posamezne olimpijske igre (poletne in zimske) v treh tabelah navedla različne podatke. \newline
-Prva tabela (v CSV obliki) vsebuje podatke:
+\textbf{Prva tabela} (v CSV obliki) vsebuje podatke:
 \begin{enumerate}
-\item{\verb|Leto| (številska premenljivka),}
+\item{\verb|Leto| (številska spremenljivka),}
 \item{\verb|Vrsta| - poletne ali zimske (imenska spremenljivka),}
 \item{ \verb|Število udeleženk| (številska) - število držav, ki so sodelovale na OI,}
 \item{\verb|Število športnikov| (številska) - skupno število športnikov,}
@@ -35,10 +35,10 @@ Podatke za prvo tabelo sem pridobila s spletnih strani
  Podatke sem zbrala v tabelo in jo shranila kot CSV (naložena na repozitoriju), da jo bom lahko uvozila v R 
  in obdelala podatke.
 \newline
-Druga tabela, prav tako v CSV obliki, vsebuje podatke o številu športnikov iz posameznih držav, ki so se udeležili 
+\textbf{Druga tabela}, prav tako v CSV obliki, vsebuje podatke o številu športnikov iz posameznih držav, ki so se udeležili 
 olimpijskih iger leta 2012 v Londonu. Podatke sem dobila na spletni strani \url{http://en.wikipedia.org/wiki/2012_Summer_Olympics} in jih shranila v tabelo v CSV obliki, ki jo bom kasneje uvozila v R.
 \newline
-Tretja tabela (v HTML obliki) vsebuje podatke: 
+\textbf{Tretja tabela} (v HTML obliki) vsebuje podatke: 
 \begin{enumerate}
 \item{\verb|Mesto| (imenska spremenljivka),}
 \item{\verb|Država| (imeska),}
@@ -52,6 +52,7 @@ Tretja tabela (v HTML obliki) vsebuje podatke:
  Tabela:
 \url{http://en.wikipedia.org/wiki/List_of_Olympic_Games_host_cities}.
 \newline
+
 \textbf{Cilji:} V projektu bom na podlagi zgornjih podatkov lahko opazovala trend udeleževanja OI. 
 Izračunala bom maksimalno, minimalno in povprečno število športnikov, ki so jih države poslale na OI, disciplin in prejetih medalj. 
 Olimpijske igre bom razvrstila v kategorije razsežnosti glede na število udeleženk. Dobljene rezultate bom prikazala tudi 
@@ -65,6 +66,7 @@ Na enak način sem uvozila tudi tabelo z imenom \verb|sportniki|.
 \newline
 Uvozila sem tudi HTML tabelo z imenom \verb|mesta|, in sicer najprej v datoteki \verb|xml.r| v mapi \verb|lib|. Na spletni strani je bilo več tabel, jaz sem uvozila prvo, iz nje naredila matriko in nato tabelo. Morala sem pobrisati nekatere stolpce in urediti podatke. Na koncu sem tudi to tabelo uvozila v datoteki \verb|uvoz.r| v mapi \verb|uvoz|.
 \newline
+
 Narisala sem dva tudi grafa. V mapi \verb|slike| sem ustvarila novo R-skripto. Najprej sem napisala v prvi in zadnji vrstici ukaze, ki mi uvozijo grafe v pdf obliko. Za oba grafa sem podatke vzela iz tabele \verb|OI|, saj so v drugi pretežno imenske spremenljivke.
 Oba grafa sta vrste \verb|plot|. Prikazujeta število držav udeleženk na Olimpijskih igrah, prvi na poletnih in drugi na zimskih OI. Da sem ju narisala, sem iz stolpca \verb|Stevilo.udelezenk| ločeno pobrala podatke za zimske in poletne OI (to sem dobila iz stolpca \verb|Vrsta|). Grafa sem ločila, ker se mi primerjanje števila udeleženk na zimskih in poletnih OI ni zdelo smiselno.
 \newline
@@ -94,14 +96,14 @@ Zemljevid sem vključila v poročilo na naslednji strani. Po pričakovanjih so n
 
 \newpage
 \section{Napredna analiza podatkov}
-V četrti fazi projekta sem se ukvarjala z napredno analizo podatkov. V prvem delu sem zemljevid iz tretje faze naredila bolj reprezentativen tako, da sem upoštevala število prebivalcev v vsaki državi. V drugem delu pa sem opazovala trend števila dogodkov na OI in na podlagi različnih modelov poskusila napovedati, kaj se bo z njim dogajalo v prihodnjih letih.
+V četrti fazi projekta sem se ukvarjala z napredno analizo podatkov. V prvem delu sem zemljevid iz tretje faze naredila bolj reprezentativen tako, da sem upoštevala število prebivalcev v vsaki državi. V drugem delu pa sem opazovala trend števila dogodkov na OI in na podlagi različnih modelov poskusila napovedati, kaj se bo z njim dogajalo v prihodnjih letih. Program sem napisala v skripto \verb|analiza.r|, ki se nahaja v mapi \verb|analiza|.
 \newline
 \begin{enumerate}
 \item{\textbf{ZEMLJEVID}
 \newline
-V četrti fazi sem poskusila izboljšati zemljevid iz tretje faze. Na tem zemljevidu sem prikazala število športnikov na milijon prebivalcev posamezne države. Podatke o populaciji sem dobila iz že uvoženega zemljevida \verb|svet| in jih shranila v vektor \verb|pop|. Število športnikov sem pomnožila z milijon. S funkcijo \verb|match| sem uredila podatke, končni uporabljeni podatki so v vektorju \verb|podatki.za.norm.zemlj| in nato izračunala max, min, povprečje ter pobarvala zemljevid. Ta je shranjen v mapi \verb|slike| pod imenom \verb|normiranzemljevid.pdf|. Dodala sem legendo in imena večjih držav. Zemljevid sem vključila v poročilo spodaj.
+V četrti fazi sem poskusila izboljšati zemljevid iz tretje faze. Na tem zemljevidu sem prikazala število športnikov na milijon prebivalcev posamezne države. Podatke o populaciji sem dobila iz že uvoženega zemljevida \verb|svet| in jih shranila v vektor \verb|pop|. Število športnikov sem pomnožila z milijon. S funkcijo \verb|match| sem uredila podatke, končni uporabljeni podatki so v vektorju \verb|podatki.za.norm.zemlj| in nato izračunala max, min, povprečje ter pobarvala zemljevid v odtenkih modre. Ta je shranjen v mapi \verb|slike| pod imenom \verb|normiranzemljevid.pdf|. Dodala sem legendo in imena večjih držav. Zemljevid sem vključila v poročilo spodaj.
 \newline
-Vidimo lahko, da se ta zemljevid precej razlikuje od prejšnjega. Temnejši odtenki predstavljajo države z večjim, svetlejši pa z manjšim številom športnikov na milijon prebivalcev. Največ (kar 88) šprtnikov na milijon prebivalcev je na OI sodelovalo iz Islandije, število je visoko tudi v Novi Zelandij. Slovenija je dosegla 32 športnikov na milijon prebivalcev. Visoko sta tudi Kanada in Avstralija in nekatere evropske države. Zaradi velikega števila prebivalcev so Kitajska, Rusija in ZDA svetleje obarvane, prav tako večina afriških držav.
+Vidimo lahko, da se ta zemljevid precej razlikuje od prejšnjega. Temnejši odtenki predstavljajo države z večjim, svetlejši pa z manjšim številom športnikov na milijon prebivalcev. Največ (kar 88) šprtnikov na milijon prebivalcev je na OI sodelovalo iz Islandije, število je visoko tudi v Novi Zelandiji. Slovenija je poslala 32 športnikov na milijon prebivalcev. Visoko sta tudi Kanada in Avstralija in nekatere evropske države. Zaradi velikega števila prebivalcev so Kitajska, Rusija in ZDA svetleje obarvane, prav tako večina afriških držav.
 }
 \makebox[\textwidth][c]{
 \includegraphics[width=1.5\textwidth]{../slike/normiranzemljevid.pdf}
@@ -131,9 +133,158 @@ Ob koncu projekta lahko pridemo do zaključka, da Olimpijske igre postajajo vedn
   \url{http://en.wikipedia.org/wiki/List_of_Olympic_Games_host_cities}\\
   {Accessed: 23-02-2015}
 \bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1896_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1900_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1904_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1908_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1912_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1920_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1924_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1928_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1932_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1936_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1948_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1952_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1956_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1960_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1964_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1968_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1972_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1976_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1980_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1984_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1988_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1992_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1996_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/2000_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/2004_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/2008_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
   \url{http://en.wikipedia.org/wiki/2012_Summer_Olympics}\\
   {Accessed: 23-02-2015}
-
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/2016_Summer_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1924_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1928_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1932_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1936_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1948_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1952_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1956_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1960_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1964_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1968_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1972_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1976_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1980_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1984_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1988_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1992_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1994_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/1998_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/2002_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/2006_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/2010_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/2014_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
+\bibitem{3}
+  \url{http://en.wikipedia.org/wiki/2018_Winter_Olympics}\\
+  {Accessed: 23-02-2015}
 \end{thebibliography}
 
 \end{document}
