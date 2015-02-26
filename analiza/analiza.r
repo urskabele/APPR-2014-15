@@ -118,3 +118,33 @@ ostz<-sapply(list(linz, kvz, loez), function(x) sum(x$residuals^2))
 detach(OI)
 dev.off()
 
+#3.) Razvrstimo države v skupine glede na število športnikov
+
+pdf("slike/skupine.pdf",paper="a4r")
+
+#tabela, ki za države na zemljevidu pove, koliko šprtnikov na milijon prebivalcev so poslale na OI 2012
+za10<-data.frame(row.names=svet$name_long,podatki.za.norm.zemlj) 
+#znebimo se NA vrstic
+za10<-za10[-c(7,8,24,39,55,66,89,114,138,141,146,164),]
+drz<-svet$name_long[-c(7,8,24,39,55,66,89,114,138,141,146,164)]
+#končna tabela, ki jo bom uporabila za razvrščanje v skupine
+tab.za.skupine<-data.frame(row.names=drz,za10)
+
+#normaliziramo
+X <- scale(as.matrix(tab.za.skupine))
+t <- hclust(dist(X),method = "ward")
+#narišemo graf
+plot(t, hang=-1, cex=0.2, lwd=0.1,main = "Skupine držav")
+legend("topleft", c("Skupina 1", "Skupina 2","Skupina 3","Skupina 4","Skupina 5","Skupina 6"),lty=c(1,1,1), col = c("red","yellow","orange","blue","magenta","green"))
+text(20,30,"Skupina 1 predstavlja")
+text(20,27.7,"državo z najmanj,")
+text(20,25.4,"skupina 6 državo z")
+text(20,23.1,"največ športniki")
+text(20,20.8,"na milijon prebivalcev.")
+#določimo skupine
+rect.hclust(t,k=6,border=c("red","yellow","magenta","green","orange","blue"))
+
+
+cutree(t, k=6)
+
+dev.off()
